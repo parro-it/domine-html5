@@ -13,7 +13,7 @@ describe('domineHtml5', () => {
           main('it works!')
         )
       );
-    //console.log(require('util').inspect(result,{depth:null}))
+    // console.log(require('util').inspect(result,{depth:null}))
     result.should.be.deep.equal({
       __vdom: true,
       tagName: 'html',

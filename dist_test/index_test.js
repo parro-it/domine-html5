@@ -1,34 +1,35 @@
 'use strict';
 
-var _regeneratorRuntime = require('babel-runtime/regenerator')['default'];
-
-var _this = this;
-
 var moduleRoot = '../es6';
 if (process.env.TEST_RELEASE) {
   moduleRoot = '../dist';
 }
 
-var domineHtml5 = require(moduleRoot);
+var _require = require(moduleRoot);
+
+var html = _require.html;
+var body = _require.body;
+var main = _require.main;
 
 describe('domineHtml5', function () {
-  it('works', function callee$1$0() {
-    var result;
-    return _regeneratorRuntime.async(function callee$1$0$(context$2$0) {
-      while (1) switch (context$2$0.prev = context$2$0.next) {
-        case 0:
-          context$2$0.next = 2;
-          return _regeneratorRuntime.awrap(domineHtml5());
-
-        case 2:
-          result = context$2$0.sent;
-
-          result.should.be.equal(42);
-
-        case 4:
-        case 'end':
-          return context$2$0.stop();
-      }
-    }, null, _this);
+  it('works', function () {
+    var result = html(body({ lang: 'en' }, main('it works!')));
+    // console.log(require('util').inspect(result,{depth:null}))
+    result.should.be.deep.equal({
+      __vdom: true,
+      tagName: 'html',
+      properties: {},
+      children: [{
+        __vdom: true,
+        tagName: 'body',
+        properties: { lang: 'en' },
+        children: [{
+          __vdom: true,
+          tagName: 'main',
+          properties: {},
+          children: ['it works!']
+        }]
+      }]
+    });
   });
 });
